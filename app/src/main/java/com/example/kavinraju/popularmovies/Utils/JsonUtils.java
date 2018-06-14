@@ -1,6 +1,5 @@
 package com.example.kavinraju.popularmovies.Utils;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.kavinraju.popularmovies.Data_Model.MovieDetail2;
@@ -11,10 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class JsonUtils {
 

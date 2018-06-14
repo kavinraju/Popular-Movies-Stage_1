@@ -23,8 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.MenuItem;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -41,7 +40,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<MovieDetail>>,MovieListAdapter_HomeActivity.MovieTileClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<MovieDetail>>,MovieListAdapter_HomeActivity.MovieTileClickListener, BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     // Constants used
     private static int MOVIES_QUERY_LOADER_ID = 99;
@@ -88,6 +87,7 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
     TextView mTextView;
     ImageView mImageView;
     ProgressBar mProgressBar;
+    Button mButton_retry;
     BottomNavigationView mBottomNavigationView;
     GridLayoutManager mGridLayoutManager;
     Toast mToast;
@@ -105,11 +105,14 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
         mTextView = findViewById(R.id.textView_connection_failed);
         mImageView = findViewById(R.id.imageView_connention_failed);
         mProgressBar = findViewById(R.id.progressBar);
+        mButton_retry = findViewById(R.id.button_networkRetry);
         mBottomNavigationView = findViewById(R.id.bottom_navigation_view);
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mBottomNavigationView.getLayoutParams();
         layoutParams.setBehavior(new BottomNavigationBehavior());
 
+        mButton_retry.setOnClickListener(this);
+        HelperMethods.showProgressBar(mProgressBar,false);
         // Check if Bundle savedInstanceState has any data in it and retrieve if there is any data.
         if (savedInstanceState != null){
             loading = savedInstanceState.getBoolean(LOADING_KEY);
@@ -398,7 +401,11 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
                     movieListAdapter_homeActivity.cleatMovieData();
                 }
                 resetPageDetails();
-                runLoaderManager(POPULAR,currentPage);
+                if(isNetworkAvailable()){
+                    runLoaderManager(POPULAR,currentPage);
+                }else {
+                    setNetworkFailedUI(true);
+                }
                 return true;
             case R.id.bottom_nav_top_rated:
                 mToolbar.setTitle(getResources().getString(R.string.bottom_navigation_title_top_rated));
@@ -408,7 +415,11 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
                     movieListAdapter_homeActivity.cleatMovieData();
                 }
                 resetPageDetails();
-                runLoaderManager(TOP_RATED,currentPage);
+                if(isNetworkAvailable()){
+                    runLoaderManager(TOP_RATED,currentPage);
+                }else {
+                    setNetworkFailedUI(true);
+                }
                 return true;
             case R.id.bottom_nav_upcoming:
                 Toast.makeText(this, "Feature yet to implement", Toast.LENGTH_SHORT).show();
@@ -422,6 +433,26 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
         }
 
         return false;
+    }
+
+
+
+    @Override
+    public void onClick(View v) {
+
+        int id = v.getId();
+        switch (id){
+            case R.id.button_networkRetry:
+
+                if (isNetworkAvailable()){
+                    setNetworkFailedUI(false);
+                    runLoaderManager(currentSelectedbottomNavigation,currentPage);
+                }else {
+                    setNetworkFailedUI(true);
+                }
+
+                break;
+        }
     }
 
     // Helper Method to reset Page details
@@ -500,13 +531,14 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
         if (noConnection){
             mImageView.setVisibility(View.VISIBLE);
             mTextView.setVisibility(View.VISIBLE);
+            mButton_retry.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.GONE);
         }else {
             mImageView.setVisibility(View.GONE);
             mTextView.setVisibility(View.GONE);
+            mButton_retry.setVisibility(View.GONE);
             mRecyclerView.setVisibility(View.VISIBLE);
         }
     }
-
 
 }

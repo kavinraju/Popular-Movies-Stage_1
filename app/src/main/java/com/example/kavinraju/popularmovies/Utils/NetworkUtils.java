@@ -3,14 +3,9 @@ package com.example.kavinraju.popularmovies.Utils;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.kavinraju.popularmovies.R;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Scanner;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

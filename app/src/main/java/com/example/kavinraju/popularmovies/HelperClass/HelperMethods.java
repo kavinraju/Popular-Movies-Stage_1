@@ -1,6 +1,5 @@
 package com.example.kavinraju.popularmovies.HelperClass;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 

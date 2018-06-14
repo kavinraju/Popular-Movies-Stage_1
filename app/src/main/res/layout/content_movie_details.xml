@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MovieDetailsActivity"
+    tools:showIn="@layout/activity_movie_details">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:paddingBottom="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imageView_backDrop"
+            android:contentDescription="@string/backdrop_image"
+
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+
+            android:scaleType="fitXY"
+            android:src="@drawable/scrim_gradient_rect"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView_poster"
+            android:contentDescription="@string/backdrop_image"
+
+            android:layout_width="@dimen/movie_poster_width"
+            android:layout_height="@dimen/movie_poster_height"
+
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+
+            android:scaleType="fitXY"
+            android:background="@drawable/scrim_gradient_rect"
+
+            app:layout_constraintBottom_toBottomOf="@+id/imageView_backDrop"
+            app:layout_constraintStart_toStartOf="@+id/imageView_backDrop"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_backDrop" />
+
+        <ImageButton
+            android:id="@+id/imageButton_back"
+            android:contentDescription="@string/icon"
+
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+
+            android:elevation="16dp"
+            app:srcCompat="@drawable/back_arrow_white_24dp"
+            android:background="@drawable/scrim_gradient"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/textView_movie_title"
+            tools:text="Shawshank"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+
+            style="@style/TextAppearance.AppCompat.Display1"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textColor="@color/colorPrimaryDark"
+
+            app:layout_constraintEnd_toStartOf="@+id/imageButton_favorite"
+            app:layout_constraintStart_toEndOf="@+id/imageView_poster"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_backDrop" />
+
+        <ImageButton
+            android:id="@+id/imageButton_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+
+            android:contentDescription="@string/bottom_navigation_title_favorite"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintTop_toTopOf="@+id/textView_movie_title"
+            app:srcCompat="@drawable/favorite_border_primary_24dp" />
+
+        <ImageView
+            android:id="@+id/imageView_icon_language"
+            android:contentDescription="@string/icon"
+
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+
+            app:srcCompat="@drawable/language_primarydark_24dp"
+
+            app:layout_constraintStart_toStartOf="@+id/textView_movie_title"
+            app:layout_constraintTop_toBottomOf="@+id/textView_movie_title" />
+
+        <TextView
+            android:id="@+id/textView_movieLanguage"
+            tools:text="English"
+            android:text="@string/dots"
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+
+            android:textColor="@color/colorPrimary"
+
+            app:layout_constraintBottom_toBottomOf="@+id/imageView_icon_language"
+            app:layout_constraintStart_toEndOf="@+id/imageView_icon_language"
+            app:layout_constraintTop_toTopOf="@+id/imageView_icon_language" />
+
+        <ImageView
+            android:id="@+id/imageView_icon_genres"
+            android:layout_width="16dp"
+
+            android:layout_height="wrap_content"
+
+            android:contentDescription="@string/icon"
+
+            app:layout_constraintStart_toStartOf="@+id/imageView_icon_language"
+            app:layout_constraintTop_toBottomOf="@+id/textView_movieLanguage"
+            app:srcCompat="@drawable/genres_primarydark_24dp" />
+
+        <TextView
+            android:id="@+id/textView_genres"
+            android:text="@string/dots"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+
+            tools:text="Crime, Drama"
+            android:textColor="@color/colorPrimary"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView_icon_genres"
+            app:layout_constraintTop_toTopOf="@+id/imageView_icon_genres" />
+
+        <ImageView
+            android:id="@+id/imageView_icon_releaseDate"
+            android:layout_width="16dp"
+
+            android:layout_height="wrap_content"
+
+            android:contentDescription="@string/icon"
+
+            app:layout_constraintStart_toStartOf="@+id/imageView_icon_genres"
+            app:layout_constraintTop_toBottomOf="@+id/textView_genres"
+            app:srcCompat="@drawable/calender_primarydark_24dp" />
+
+        <TextView
+            android:id="@+id/textView_releaseDate"
+            tools:text="1994-09-10"
+            android:text="@string/dots"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+
+            android:textColor="@color/colorPrimary"
+
+            app:layout_constraintBottom_toBottomOf="@+id/imageView_icon_releaseDate"
+            app:layout_constraintStart_toEndOf="@+id/imageView_icon_releaseDate"
+            app:layout_constraintTop_toTopOf="@+id/imageView_icon_releaseDate" />
+
+
+        <ImageView
+            android:id="@+id/imageView"
+
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+
+            android:contentDescription="@string/icon"
+
+            app:layout_constraintStart_toStartOf="@+id/imageView_icon_releaseDate"
+            app:layout_constraintTop_toBottomOf="@+id/textView_releaseDate"
+            app:srcCompat="@drawable/star_primarydark_24dp" />
+
+        <TextView
+            android:id="@+id/textView_rating"
+            tools:text="8.32"
+            android:text="@string/dots"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+
+            android:textColor="@color/colorPrimary"
+
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+
+
+
+        <TextView
+            android:id="@+id/textView_tagline"
+            tools:text="Mankind was born on Earth. It was never meant to die here."
+            android:text="@string/dots_lenghty"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+
+            android:textColor="@color/colorPrimaryDark"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:textStyle="italic"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_rating" />
+
+        <View
+            android:id="@+id/view_1"
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+
+            android:background="@color/colorPrimaryDark"
+            android:visibility="gone"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_tagline" />
+
+        <TextView
+            android:id="@+id/textView_casts_title"
+            android:text="@string/casts"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+
+            style="@style/TextAppearance.AppCompat.Title"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_tagline" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_casts"
+
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+
+
+            android:background="@android:color/darker_gray"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_casts_title" />
+
+        <TextView
+            android:id="@+id/textView_description_title"
+            android:text="@string/description"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+
+            style="@style/TextAppearance.AppCompat.Title"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView_casts" />
+
+        <TextView
+            android:id="@+id/textView_description"
+            tools:text="A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground fight clubs forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion."
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:fontFamily="sans-serif"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_description_title" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_movieDetails"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            style="?android:attr/progressBarStyle"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

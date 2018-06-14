@@ -20,5 +20,6 @@
     <string name="dots_lenghty">................................................................................................</string>
     <string name="shared_element_transition">sharedElementTransition</string>
     <string name="connection_failed">Connection Failed</string>
+    <string name="retry">Retry</string>
 
 </resources>
